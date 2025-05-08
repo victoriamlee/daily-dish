@@ -9,6 +9,7 @@ function HomePage({ apiKey }) {
   const [recipesCount, setRecipesCount] = useState(0)
   const [page, setPage] = useState(1)
   const [searchTerm, setSearchTerm] = useState('')
+  const [noResults, setNoResults] = useState(false)
 
   const fetchRecipes = async (searchTerm, pageNumber = 1, cuisine = '') => {
     setLoading(true)
@@ -23,6 +24,7 @@ function HomePage({ apiKey }) {
       const data = await response.json()
       setRecipes(data.results || [])
       setRecipesCount(data.totalResults || 0)
+      setNoResults(data.totalResults === 0)
     } catch (error) {
       console.error('Error fetching recipes:', error)
     } finally {
@@ -51,6 +53,7 @@ function HomePage({ apiKey }) {
         recipes={recipes}
         recipesCount={recipesCount}
         page={page}
+        noResults={noResults}
         handlePaginationChange={handlePaginationChange}
       />
     </div>

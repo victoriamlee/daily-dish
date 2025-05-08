@@ -89,11 +89,12 @@ const styles = {
     maxWidth: '700px',
     margin: '2rem auto',
     padding: '2rem',
-    backgroundColor: '#fdfcf9',
     borderRadius: '16px',
     boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
     fontFamily: 'Georgia, serif',
     color: '#4b4b4b',
+    border: '1px solid #e0dcd4',
+    backgroundColor: '#fff8f8',
   },
   image: {
     width: '100%',

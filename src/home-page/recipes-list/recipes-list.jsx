@@ -1,4 +1,4 @@
-import { Pagination, Card, Spin } from 'antd'
+import { Pagination, Card, Spin, Empty } from 'antd'
 import { useNavigate } from 'react-router-dom'
 
 function RecipesList({
@@ -6,6 +6,7 @@ function RecipesList({
   recipes,
   recipesCount,
   page,
+  noResults,
   handlePaginationChange,
 }) {
   const navigate = useNavigate()
@@ -14,18 +15,22 @@ function RecipesList({
 
   return (
     <Spin spinning={loading}>
-      {recipes?.map((recipe, index) => (
-        <div key={index} style={styles.cardWrapper}>
-          <Card
-            hoverable
-            onClick={() => handleClick(recipe.id)}
-            style={styles.card}
-          >
-            <img alt={recipe.title} src={recipe.image} />
-            <h1 style={styles.title}>{recipe.title}</h1>
-          </Card>
-        </div>
-      ))}
+      {noResults ? (
+        <Empty description={false} style={{ marginTop: '200px' }} />
+      ) : (
+        recipes?.map((recipe, index) => (
+          <div key={index} style={styles.cardWrapper}>
+            <Card
+              hoverable
+              onClick={() => handleClick(recipe.id)}
+              style={styles.card}
+            >
+              <img alt={recipe.title} src={recipe.image} />
+              <h1 style={styles.title}>{recipe.title}</h1>
+            </Card>
+          </div>
+        ))
+      )}
       {recipesCount > 0 && (
         <div style={styles.pagination}>
           <Pagination
@@ -47,11 +52,12 @@ const styles = {
     padding: '10px 40px',
   },
   card: {
-    maxWidth: '1000px',
+    maxWidth: '600px',
     margin: '0 auto',
     borderRadius: '12px',
-    boxShadow: '0 2px 12px rgba(0,0,0,0.06)',
     cursor: 'pointer',
+    border: '1px solid #e0dcd4',
+    backgroundColor: '#fff8f8',
   },
   title: {
     fontSize: '1.5rem',
