@@ -1,0 +1,50 @@
+#root {
+  width: 100%;
+  text-align: center;
+}
+
+body {
+  align-items: flex-start;
+}
+
+.app-container {
+  font-family: 'Georgia', serif;
+  background-color: #fff9f3;
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
+}
+
+.app-header {
+  padding: 1rem 2rem;
+  background-color: #fdf6ef;
+  border-bottom: 1px solid #e0dcd3;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  background-image: url('./assets/food-background.svg');
+  background-repeat: repeat;
+  background-size: auto;
+}
+
+.app-title {
+  font-size: 2rem;
+  color: #333;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.app-main {
+  padding: 2rem;
+}
+
+input {
+  height: 32px;
+}
+
+.ant-pagination-item {
+  background-color: #fff9f3 !important;
+}
+
+.ant-select-selection-placeholder {
+  text-align: left;
+}
