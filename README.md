@@ -39,15 +39,16 @@ Built using the [Spoonacular API](https://spoonacular.com/food-api), Daily Dish 
 
 1. **Clone the Repository**
 
-``bash
+```bash
 git clone https://github.com/victoriamlee/daily-dish.git
-cd daily-dish``
+cd daily-dish
+```
 
 2. **Install Dependencies**
 
-``
+```
 npm install
-``
+```
 
 
 3. **Configure Your API Key**
@@ -55,16 +56,16 @@ npm install
 - Create a .env file in the root of the project directory.
 - Add your API key in the .env file like this:
 
-``
+```
 VITE_SPOONACULAR_API_KEY=your_api_key_here
-``
+```
 
 Note: You can get your API key by signing up for a free account at [Spoonacular API](https://spoonacular.com/food-api).
 
 4. **Start the Development Server**
 
-``
+```
 npm run dev
-``
+```
 
 Now you can access the app at http://localhost:3000 in your browser.
