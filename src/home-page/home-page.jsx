@@ -10,32 +10,27 @@ function HomePage({ apiKey }) {
   const [page, setPage] = useState(1)
   const [searchTerm, setSearchTerm] = useState('')
 
-  const handleSearch = (searchTerm, pageNumber = 1, cuisine = '') => {
+  const fetchRecipes = async (searchTerm, pageNumber = 1, cuisine = '') => {
     setLoading(true)
     setPage(pageNumber)
 
+    const offset = (pageNumber - 1) * 5
+    const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&query=${searchTerm}&number=5&offset=${offset}&cuisine=${cuisine}`
+
     // fetch data
-    fetch(
-      `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&query=${searchTerm}&number=5&offset=${
-        (pageNumber - 1) * 5
-      }&cuisine=${cuisine}`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        setRecipes(data.results)
-        setRecipesCount(data.totalResults)
-        setLoading(false)
-      })
-      .catch((error) => {
-        console.error('Error fetching users:', error)
-        setLoading(false)
-      })
+    try {
+      const response = await fetch(url)
+      const data = await response.json()
+      setRecipes(data.results || [])
+      setRecipesCount(data.totalResults || 0)
+    } catch (error) {
+      console.error('Error fetching recipes:', error)
+    } finally {
+      setLoading(false)
+    }
   }
 
-  const handlePaginationChange = (value) => {
-    handleSearch(searchTerm, value)
-    setPage(value)
-  }
+  const handlePaginationChange = (newPage) => fetchRecipes(searchTerm, newPage)
 
   return (
     <div style={{ padding: '15px 105px' }}>
@@ -43,13 +38,13 @@ function HomePage({ apiKey }) {
       <SearchBar
         searchTerm={searchTerm}
         page={page}
-        onSearch={handleSearch}
+        onSearch={fetchRecipes}
         setSearchTerm={setSearchTerm}
       />
       <CuisineSelect
         searchTerm={searchTerm}
         page={page}
-        handleSearch={handleSearch}
+        handleSearch={fetchRecipes}
       />
       <RecipesList
         loading={loading}

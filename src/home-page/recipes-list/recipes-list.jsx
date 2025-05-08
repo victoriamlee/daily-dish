@@ -10,9 +10,7 @@ function RecipesList({
 }) {
   const navigate = useNavigate()
 
-  const handleClick = (id) => {
-    navigate(`/recipes/${id}`)
-  }
+  const handleClick = (id) => navigate(`/recipes/${id}`)
 
   return (
     <Spin spinning={loading}>

@@ -3,13 +3,7 @@ import { Input } from 'antd'
 const { Search } = Input
 
 function SearchBar({ searchTerm, onSearch, setSearchTerm }) {
-  const handleInputChange = (event) => {
-    setSearchTerm(event.target.value)
-  }
-
-  const handleSearch = () => {
-    onSearch(searchTerm)
-  }
+  const handleInputChange = (e) => setSearchTerm(e.target.value)
 
   return (
     <>
@@ -17,7 +11,8 @@ function SearchBar({ searchTerm, onSearch, setSearchTerm }) {
         style={{ maxWidth: 450 }}
         placeholder='Search'
         onChange={handleInputChange}
-        onSearch={handleSearch}
+        onSearch={() => onSearch(searchTerm)}
+        enterButton
       />
     </>
   )
