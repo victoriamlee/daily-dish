@@ -2,11 +2,6 @@ import { Header } from 'antd/es/layout/layout'
 import { Link } from 'react-router-dom'
 
 function AppHeader() {
-  const handleHeaderClick = () => {
-    // setSearchTerm('')
-    handleSearch('', 1)
-  }
-
   return (
     <Header
       className='app-header'
@@ -18,7 +13,7 @@ function AppHeader() {
         alignItems: 'center',
       }}
     >
-      <Link to='/' style={{ color: 'black' }} onClick={handleHeaderClick}>
+      <Link reloadDocument to='/' style={{ color: 'black' }}>
         <h1>Daily Dish</h1>
       </Link>
     </Header>
